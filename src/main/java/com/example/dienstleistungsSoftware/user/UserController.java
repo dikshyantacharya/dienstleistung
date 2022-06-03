@@ -56,13 +56,16 @@ public class UserController {
 
   @PutMapping("/changepw" + "/" + "{email}")
   public void changePassword(
-          @RequestBody
-                  UserPW userPW,
-          @PathVariable
-                  String email) {
+    @RequestBody
+      UserPW userPW,
+    @PathVariable
+      String email) {
     userService.changePassword(email, userPW);
   }
 
-
+  @GetMapping
+  public String getAllUsers() {
+    return "Hello World";
+  }
 
 }
