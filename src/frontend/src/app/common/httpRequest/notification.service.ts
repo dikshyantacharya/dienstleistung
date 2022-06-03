@@ -12,7 +12,7 @@ import { Notification } from '../object/notification';
 export class NotificationService {
   constructor(private http: HttpClient) {}
 
-  private apiServerUrl = 'http://localhost:6060';
+  private apiServerUrl = 'http://localhost:8080';
 
   public getAllNotification(userEmail: string): Observable<Notification[]> {
     const url = `${this.apiServerUrl}/notification/${userEmail}`;

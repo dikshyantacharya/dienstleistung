@@ -10,7 +10,7 @@ import { User } from '../object/user';
   providedIn: 'root',
 })
 export class DienstleistungService {
-  private apiServerUrl = 'http://localhost:6060';
+  private apiServerUrl = 'http://localhost:8080';
 
   constructor(private http: HttpClient) {}
 
