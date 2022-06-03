@@ -1,0 +1,61 @@
+.form-group {
+  display: block;
+  width: 300px;
+
+}
+
+#loginButton {
+  margin-top: 10px;
+  width: 300px;
+  font-size: 30px;
+  border-radius: 12px;
+
+}
+
+#loginBody {
+  margin-top: 300px;
+  width: 370px;
+  margin-left: 0px;
+}
+
+#registrationButton {
+  margin-top: 20px;
+  width: 250px;
+  font-size: 15px;
+  border-radius: 12px;
+  margin-left: 50px;
+  margin-bottom: 25px;
+  background-color: #36A420;
+}
+
+#aboutUs {
+  color: blue;
+  margin-left: 130px;
+
+}
+
+#horizontalLine {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+
+#buttonClose {
+  background-color: red;
+}
+
+.registration-form-group {
+  width: 450px;
+}
+
+.column {
+  float: left;
+  width: 50%;
+}
+
+#logo {
+  width: 450px;
+  height: 75px;
+  margin-left: 500px;
+  margin-top: 400px;
+}

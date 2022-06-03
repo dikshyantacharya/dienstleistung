@@ -1,0 +1,363 @@
+<div>
+  <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <a class="navbar-brand" (click)="iconClicked()">
+      <img
+        src="../../assets/img/logo-nav-bar.png"
+        class="d-inline-block align-top"
+        id="logo"
+        alt=""
+      />
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarColor02"
+      aria-controls="navbarColor02"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a role="button" (click)="open(dienstcreate)">Dienst Erstellen</a>
+        </li>
+        <li class="nav-item">
+          <a role="button" (click)="onSubmit('showMyDLS')"> Meine Dienste</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav me auto">
+        <div class="notification">
+          <img
+            role="button"
+            (click)="open(notificationTab)"
+            id="notificationImage"
+            src="https://c8.alamy.com/comp/WAA6EW/notification-bell-icon-outline-style-WAA6EW.jpg"
+          />
+          <div id="notificationNumber" *ngIf="totalNotification != 0">
+            {{ totalNotification }}
+          </div>
+        </div>
+      </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item" id="dropdownButtonInList">
+          <div ngbDropdown>
+            <button
+              class="btn btn-primary dropdownIcon"
+              id="dropdownButton"
+              ngbDropdownToggle
+            ></button>
+            <div ngbDropdownMenu="dropdownButton" class="dropdownBox">
+              <div class="collapse navbar-collapse" id="Update Account">
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item active">
+                    <div>
+                      <a
+                        class="toggleLink"
+                        role="button"
+                        (click)="open(updateUser)"
+                        >Update Account</a
+                      >
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="collapse navbar-collapse" id="Change Password">
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item active">
+                    <div>
+                      <a
+                        class="toggleLink"
+                        role="button"
+                        (click)="open(changePassword)"
+                        >Change Password</a
+                      >
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="collapse navbar-collapse" id="delete">
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item active">
+                    <div>
+                      <a
+                        class="toggleLink"
+                        role="button"
+                        (click)="open(deleteUser)"
+                        >Delete Account</a
+                      >
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="collapse navbar-collapse" id="logoutButton">
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item active">
+                    <div>
+                      <a class="toggleLink" role="button" (click)="logout()"
+                        >Logout</a
+                      >
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Update Password -->
+  <ng-template #changePassword let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Bitte geben Sie Ihre Daten ein:</h4>
+      <button
+        type="button"
+        class="btn-close"
+        aria-label="Close"
+        (click)="modal.dismiss('Cross click')"
+      ></button>
+    </div>
+    <div class="modal-body">
+      <form
+        (ngSubmit)="onSubmit('changePassword')"
+        [formGroup]="changePasswordForm"
+      >
+        <div class="mb-3">
+          <div class="update-form-group">
+            <label for="oldpw"></label>
+            <input
+              type="password"
+              class="form-control"
+              id="oldpw"
+              name="oldpassword"
+              required
+              formControlName="oldpassword"
+              placeholder="Altes Passwort"
+              [ngModel]="oldpassword"
+            />
+          </div>
+          <div class="update-form-group">
+            <label for="newpassword"></label>
+            <input
+              type="password"
+              class="form-control"
+              id="newpassword"
+              name="newpassword"
+              required
+              formControlName="newpassword"
+              placeholder="Neues Passwort"
+              [ngModel]="newpassword"
+            />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="submit"
+            class="btn btn-outline-dark"
+            (click)="modal.close('Save click')"
+            [disabled]="!changePasswordForm.valid"
+          >
+            Update
+          </button>
+        </div>
+      </form>
+    </div>
+  </ng-template>
+
+  <!--Delete User -->
+  <ng-template #deleteUser let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title-delete">
+        Bitte geben Sie Ihre Daten ein:
+      </h4>
+      <button
+        type="button"
+        class="btn-close"
+        aria-label="Close"
+        (click)="modal.dismiss('Cross click')"
+      ></button>
+    </div>
+    <div class="modal-body">
+      <form (ngSubmit)="onSubmit('deleteUser')" [formGroup]="deleteUserForm">
+        <div class="mb-3">
+          <div class="form-group">
+            <label for="emailDelete">E-Mail:</label>
+            <input
+              type="email"
+              class="form-control"
+              id="emailDelete"
+              name="email"
+              required
+              formControlName="email"
+            />
+            <label for="passwordDelete">Passwort:</label>
+            <input
+              type="password"
+              class="form-control"
+              id="passwordDelete"
+              name="password"
+              required
+              formControlName="password"
+            />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="submit"
+            class="btn btn-outline-dark"
+            (click)="modal.close('Save click')"
+            [disabled]="!deleteUserForm.valid"
+          >
+            Delete
+          </button>
+        </div>
+      </form>
+    </div>
+  </ng-template>
+
+  <!-- Update User -->
+  <ng-template #updateUser let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Bitte geben Sie Ihre Daten ein:</h4>
+      <button
+        type="button"
+        class="btn-close"
+        aria-label="Close"
+        (click)="modal.dismiss('Cross click')"
+      ></button>
+    </div>
+    <div class="modal-body">
+      <form (ngSubmit)="onSubmit('updateUser')" [formGroup]="updateUserForm">
+        <div class="mb-3">
+          <div class="update-form-group">
+            <label for="nameUpdate"></label>
+            <input
+              type="text"
+              class="form-control"
+              id="nameUpdate"
+              name="name"
+              required
+              formControlName="name"
+              placeholder="Vorname"
+              [ngModel]="userName"
+            />
+          </div>
+          <div class="update-form-group">
+            <label for="surnameUpdate"></label>
+            <input
+              type="text"
+              class="form-control"
+              id="surnameUpdate"
+              name="surname"
+              required
+              formControlName="surname"
+              placeholder="Nachname"
+              [ngModel]="userSurname"
+            />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="submit"
+            class="btn btn-outline-dark"
+            (click)="modal.close('Save click')"
+            [disabled]="!updateUserForm.valid"
+          >
+            Update
+          </button>
+        </div>
+      </form>
+    </div>
+  </ng-template>
+
+  <!--Dienstleistung erstellen -->
+  <ng-template #dienstcreate let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title-dienstcreate">
+        Neue Dienstleistung erstellen
+      </h4>
+      <button
+        type="button"
+        class="btn-close"
+        aria-label="Close"
+        (click)="modal.dismiss('Cross click')"
+      ></button>
+    </div>
+    <div class="modal-body">
+      <form (ngSubmit)="onSubmit('createDLS')" [formGroup]="dienstcreateForm">
+        <div class="mb-3">
+          <div class="form-group">
+            <label for="title">Titel:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="title"
+              name="title"
+              required
+              formControlName="title"
+            />
+            <label for="description">Beschreibung:</label>
+            <textarea
+              rows="5"
+              cols="50"
+              class="form-control"
+              id="description"
+              name="description"
+              placeholder="Beschreiben Sie hier ihre Dienstleistung und geben Sie weitere wichtige Informationen an."
+              required
+              formControlName="description"
+            ></textarea>
+            <label for="pricing">Vergütung:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="pricing"
+              name="pricing"
+              required
+              formControlName="pricing"
+            />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="submit"
+            class="btn btn-outline-dark"
+            (click)="modal.close('Save click')"
+            [disabled]="!dienstcreateForm.valid"
+          >
+            Anzeige aufgeben
+          </button>
+        </div>
+      </form>
+    </div>
+  </ng-template>
+</div>
+
+<!--test -->
+<ng-template #notificationTab let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title-notificationPanel">
+      Ihre Notifications:
+    </h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <div *ngFor="let notification of notificationList">
+      <div>
+        {{ notification.userSender }} has sent you request for your service
+        {{ notification.serviceTitle }}
+        <button class="btn-danger">Delete</button>
+      </div>
+    </div>
+  </div>
+</ng-template>

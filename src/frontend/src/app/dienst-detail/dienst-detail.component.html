@@ -1,0 +1,60 @@
+<app-nav-bar></app-nav-bar>
+
+<div class="col">
+  <div class="col1">
+    <div class="row">
+      <div class="mat-container column-sm-1">
+        <div role="button" class="mr-1 column-sm-1" id="myService">
+          <div class="card">
+            <mat-card class="example-card">
+              <mat-card-header>
+                <mat-card-title class="mat-title">{{
+                  dienstleistungTitle
+                }}</mat-card-title>
+                <mat-card-subtitle class="mat-subtitle"
+                  >UVP: {{ dienstleistungPricing }} €
+                </mat-card-subtitle>
+              </mat-card-header>
+              <mat-card-content>
+                {{ dienstleistungDescription }}
+              </mat-card-content>
+              <mat-card-actions>
+                <button
+                  mat-button
+                  (click)="onAcceptClicked()"
+                  class="btn-primary dienstButton"
+                  *ngIf="!accepted"
+                >
+                  Accept
+                </button>
+                <button
+                  mat-button
+                  (click)="onUnacceptClicked()"
+                  class="btn-primary dienstButton"
+                  *ngIf="accepted"
+                >
+                  Unaccept
+                </button>
+              </mat-card-actions>
+            </mat-card>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col2">
+    <h1>Anbieter Info</h1>
+    <h4>
+      <div>Name :{{ dienstOwnerName }} {{ dienstOwnerSurname }}</div>
+    </h4>
+    <div>
+      Email:
+      <a
+        href="mailto:{{ dienstOwnerEmail }}?subject=Bitte um {{
+          dienstleistungTitle
+        }} Dienst &body=Sehr geehrte Damen und Herren"
+        >{{ dienstOwnerEmail }}</a
+      >
+    </div>
+  </div>
+</div>

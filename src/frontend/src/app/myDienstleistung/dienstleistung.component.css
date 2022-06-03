@@ -1,0 +1,32 @@
+.btn-close{
+  background-color: red;
+}
+
+
+.mat-container{
+  margin: 15px;
+}
+.example-card {
+  max-width: 400px;
+  box-shadow: 10px 20px 15px silver;
+  margin: 10px;
+  font-family: Roboto, serif;
+}
+.mat-title {
+  font-weight: bold;
+  font-size: 200%;
+}
+
+.column-sm-4{
+  float: left;
+  width: 23%;
+}
+
+.card{
+  width: 25rem;
+}
+
+.dienstButton{
+  float: right;
+  margin-right: 10px;
+}

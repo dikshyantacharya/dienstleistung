@@ -1,0 +1,57 @@
+#logo {
+  width: 300px;
+  height: 50px;
+  margin-left: 30px;
+}
+
+.toggleLink {
+  text-decoration: none;
+  color: white;
+}
+
+.dropdownBox {
+  background-color: #212529;
+}
+
+#dropdownIcon {
+  margin-right: 20px;
+  padding: 400px;
+  border-radius: 100%;
+}
+
+#dropdownButtonInList {
+  margin-left: 20px;
+  color: white;
+  padding-right:150px;
+}
+.btn-close{
+  background-color: red;
+}
+
+.nav-item{
+color: orange;
+  margin-left: 20px;
+}
+#notificationImage{
+  width: 35px;
+  height: 35px;
+  border-radius: 100%;
+}
+#notificationNumber{
+  background-color:red;
+  font-size:large;
+  position:absolute;
+  margin-top: -55px;
+  margin-left: 20px;
+  height: 30px;
+  width: 30px;
+  padding-bottom: 30px;
+  border-radius: 100px;
+  text-align: center;
+  color: white;
+}
+.notification {
+  width:30px;
+  height:30px;
+  position: relative;
+}
