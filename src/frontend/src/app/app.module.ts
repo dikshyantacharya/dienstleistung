@@ -27,7 +27,7 @@ import { AboutUsComponent } from './about-us/about-us.component';
     LoginComponent,
     HomeComponent,
     DienstDetailComponent,
-    AboutUsComponent
+    AboutUsComponent,
   ],
   imports: [
     AppRoutingModule,

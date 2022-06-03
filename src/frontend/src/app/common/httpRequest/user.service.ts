@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { User } from '../object/user';
 import { Login } from '../object/login';
 import { UserUpdate } from '../object/userUpdate';
-import {changePassword} from "../object/changePassword";
+import { changePassword } from '../object/changePassword';
 
 @Injectable({
   providedIn: 'root',
@@ -33,8 +33,14 @@ export class UserService {
     return this.http.put<User>(`${this.apiServerUrl}/${email}`, userUpdate);
   }
 
-  public changePassword(email: String, changepw: changePassword): Observable<User> {
-    return this.http.put<User>(`${this.apiServerUrl}/changepw/${email}`, changepw);
+  public changePassword(
+    email: String,
+    changepw: changePassword
+  ): Observable<User> {
+    return this.http.put<User>(
+      `${this.apiServerUrl}/changepw/${email}`,
+      changepw
+    );
   }
 
   public getUser(email: string): Observable<User> {

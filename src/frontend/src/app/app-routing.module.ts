@@ -6,7 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './common/auth.guard';
 import { HomeComponent } from './home/home.component';
 import { DienstDetailComponent } from './dienst-detail/dienst-detail.component';
-import {AboutUsComponent} from "./about-us/about-us.component";
+import { AboutUsComponent } from './about-us/about-us.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -28,8 +28,8 @@ const routes: Routes = [
   },
   {
     path: 'about-us',
-    component: AboutUsComponent
-  }
+    component: AboutUsComponent,
+  },
 ];
 
 @NgModule({

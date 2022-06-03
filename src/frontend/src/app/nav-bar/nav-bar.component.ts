@@ -1,16 +1,16 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {UserService} from '../common/httpRequest/user.service';
-import {ActivatedRoute, Router} from '@angular/router';
-import {DialogService} from '../common/dialog.service';
-import {User} from '../common/object/user';
-import {ToastrService} from 'ngx-toastr';
-import {DienstleistungService} from '../common/httpRequest/dienstleistung.service';
-import {Dienstleistung} from '../common/object/dienstleistung';
-import {Observable} from 'rxjs';
-import {NotificationService} from '../common/httpRequest/notification.service';
-import {Notification} from "../common/object/notification";
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UserService } from '../common/httpRequest/user.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { DialogService } from '../common/dialog.service';
+import { User } from '../common/object/user';
+import { ToastrService } from 'ngx-toastr';
+import { DienstleistungService } from '../common/httpRequest/dienstleistung.service';
+import { Dienstleistung } from '../common/object/dienstleistung';
+import { Observable } from 'rxjs';
+import { NotificationService } from '../common/httpRequest/notification.service';
+import { Notification } from '../common/object/notification';
 
 @Component({
   selector: 'app-nav-bar',
@@ -25,7 +25,6 @@ export class NavBarComponent implements OnInit {
   userEmail: string = '';
   oldpassword: string = '';
   newpassword: string = '';
-
 
   // forms
   deleteUserForm: FormGroup;
@@ -73,11 +72,14 @@ export class NavBarComponent implements OnInit {
     });
 
     this.changePasswordForm = new FormGroup({
-      "oldpassword": new FormControl(),
-      "newpassword": new FormControl('', Validators.compose([
-        Validators.required,
-        // Validators.minLength(8)
-      ]))
+      oldpassword: new FormControl(),
+      newpassword: new FormControl(
+        '',
+        Validators.compose([
+          Validators.required,
+          // Validators.minLength(8)
+        ])
+      ),
     });
 
     //create Dienstleistung
@@ -127,13 +129,13 @@ export class NavBarComponent implements OnInit {
       this.router.navigate(['/login']);
     }
 
-    this.notificationService.getAllNotification(this.userEmail).subscribe(
-      (notificationList) => {
+    this.notificationService
+      .getAllNotification(this.userEmail)
+      .subscribe((notificationList) => {
         this.notificationList = notificationList;
         console.log(this.notificationList);
         this.totalNotification = notificationList.length;
-      }
-    )
+      });
     /*
       this.notificationService
         .getAllNotification(this.userEmail)
@@ -200,14 +202,19 @@ export class NavBarComponent implements OnInit {
         );
     }
 
-    if (mode == "changePassword") {
-      this.userService.changePassword(this.userEmail, this.changePasswordForm.value).subscribe(data => {
-        console.log(data);
-        this.toastr.success("Erfolgreich aktualisiert");
-      }, error => {
-        console.log(error);
-        this.toastr.error("Fehler beim Aktualisieren");
-      });
+    if (mode == 'changePassword') {
+      this.userService
+        .changePassword(this.userEmail, this.changePasswordForm.value)
+        .subscribe(
+          (data) => {
+            console.log(data);
+            this.toastr.success('Erfolgreich aktualisiert');
+          },
+          (error) => {
+            console.log(error);
+            this.toastr.error('Fehler beim Aktualisieren');
+          }
+        );
     }
 
     if (mode === 'createDLS') {
@@ -246,6 +253,6 @@ export class NavBarComponent implements OnInit {
   }
 
   notificationIconClicked() {
-    this.dialogService.open("notificationIcon");
+    this.dialogService.open('notificationIcon');
   }
 }

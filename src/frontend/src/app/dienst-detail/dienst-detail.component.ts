@@ -1,12 +1,12 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {Dienstleistung} from '../common/object/dienstleistung';
-import {DienstleistungService} from '../common/httpRequest/dienstleistung.service';
-import {Observable} from 'rxjs';
-import {User} from '../common/object/user';
-import {NotificationCreate} from '../common/object/notificationCreate';
-import {NotificationService} from '../common/httpRequest/notification.service';
-import {Notification} from "../common/object/notification";
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Dienstleistung } from '../common/object/dienstleistung';
+import { DienstleistungService } from '../common/httpRequest/dienstleistung.service';
+import { Observable } from 'rxjs';
+import { User } from '../common/object/user';
+import { NotificationCreate } from '../common/object/notificationCreate';
+import { NotificationService } from '../common/httpRequest/notification.service';
+import { Notification } from '../common/object/notification';
 
 @Component({
   selector: 'app-dienst-detail',
@@ -38,8 +38,7 @@ export class DienstDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private dienstService: DienstleistungService,
     private notificationService: NotificationService
-  ) {
-  }
+  ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
@@ -59,14 +58,15 @@ export class DienstDetailComponent implements OnInit {
     });
     this.test = JSON.stringify(this.dienstleistung);
     this.getUserFromServiceId(this.dienstId);
-    this.notificationService.getNotificationByUserAndService(this.userEmail, this.dienstId).subscribe((notification) => {
-      this.notification = notification
-      console.log("notification  is " + notification);
-      if (notification != null) {
-        this.accepted = true;
-      }
-    });
-
+    this.notificationService
+      .getNotificationByUserAndService(this.userEmail, this.dienstId)
+      .subscribe((notification) => {
+        this.notification = notification;
+        console.log('notification  is ' + notification);
+        if (notification != null) {
+          this.accepted = true;
+        }
+      });
   }
 
   getDienstleistung(dienstId: number) {
@@ -95,32 +95,27 @@ export class DienstDetailComponent implements OnInit {
         viewed: false,
       })
       .subscribe(
-        data => {
+        (data) => {
           console.log(data);
           location.reload();
         },
-        error => {
+        (error) => {
           console.log(error);
         }
       );
-
   }
 
   onUnacceptClicked() {
     this.notificationService
-      .deleteNotification(
-        this.userEmail,
-        this.dienstId
-      )
+      .deleteNotification(this.userEmail, this.dienstId)
       .subscribe(
-        data => {
+        (data) => {
           console.log(data);
-          location.reload()
+          location.reload();
         },
-        error => {
+        (error) => {
           console.log(error);
         }
       );
   }
-
 }
