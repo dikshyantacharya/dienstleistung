@@ -1,0 +1,1 @@
+A simple implementation of Fullstack web development using Angular and Springboot and in-memory database, to create a website with multiple functionality like logging in, posting services, accepting services, getting notifications from other users etc.
